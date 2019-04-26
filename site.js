@@ -5,6 +5,9 @@ var url = require('url');
 http.createServer(function(req, res) {
   var q = url.parse(req.url, true);
   var filename = '.' + q.pathname;
+  if (filename == './'){
+    filename = './index.html'
+  }
   fs.readFile(filename, function(err, data) {
     if (err) {
       res.writeHead(404, {'Content-Type': 'text/html'});
